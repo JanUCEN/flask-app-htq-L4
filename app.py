@@ -33,5 +33,5 @@ def load_sales():
         income = json.loads("".join(file.readlines()))
     
 
-
-app.run()
+if __name__=="__main__":
+    app.run()
