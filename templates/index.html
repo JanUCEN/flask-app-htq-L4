@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>{{name}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      form {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      form div {
+        margin-right: 1em;
+      }
+
+      @media screen and (max-width: 770px) {
+        form div {
+          margin-bottom: 0.5em;
+        }
+				form label {
+					display: inline-block;
+					min-width: 100px;
+				}
+      }
+
+    </style>
+</head>
+
+<body class="container">
+  <header>
+    <h1>{{name}}</h1>
+  </header>
+  <main>
+    <form action="/add_sale" method="post">
+      <div>
+        <label for="product">Product name</label>
+        <input type="text" name="product" id="product" />
+      </div>
+      <div>
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" step=".01" />
+      </div>
+      <div>
+        <button type="submit">Send</button>
+      </div>
+    </form>
+    <div class="table-responsive-md mt-5">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in sales %}
+          <tr>
+            <td scope="row">{{ item['product'] }}</td>
+            <td>£{{ item['price'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>£{{total}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
+
